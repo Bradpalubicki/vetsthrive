@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+  <!-- Shield Base -->
+  <path d="M30 5L5 15V35C5 45 15 52 30 55C45 52 55 45 55 35V15L30 5Z" fill="#1E3A5F" stroke="#FFD700" stroke-width="2"/>
+
+  <!-- Star in Shield -->
+  <path d="M30 15L32.5 22.5H40L34 27.5L36.5 35L30 30L23.5 35L26 27.5L20 22.5H27.5L30 15Z" fill="#FFD700"/>
+
+  <!-- Rising Arrow/Growth Element -->
+  <path d="M42 38L48 28L54 38" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M48 28V42" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Text: VETERANS -->
+  <text x="65" y="28" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="18" fill="#1E3A5F" letter-spacing="1">VETERANS</text>
+
+  <!-- Text: THRIVE -->
+  <text x="65" y="48" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="20" fill="#1E3A5F" letter-spacing="2">THRIVE</text>
+
+  <!-- Gold underline accent -->
+  <rect x="65" y="51" width="85" height="3" fill="#FFD700" rx="1.5"/>
+
+  <!-- Foundation text -->
+  <text x="160" y="48" font-family="Montserrat, Arial, sans-serif" font-weight="500" font-size="10" fill="#B22234" letter-spacing="1">FOUNDATION</text>
+</svg>

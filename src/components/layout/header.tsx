@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import { Menu, X, Heart } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -14,26 +14,48 @@ const navLinks = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-        <Link href="/" className="flex items-center space-x-2">
-          <div className="flex flex-col">
-            <span className="text-xl font-bold text-[#1E3A5F]">
-              Veterans Thrive
-            </span>
-            <span className="text-xs text-[#B22234] -mt-1">Foundation</span>
-          </div>
+    <header
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? "bg-white/95 backdrop-blur-md shadow-lg"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
+        {/* Logo */}
+        <Link href="/" className="flex items-center space-x-3 group">
+          <Image
+            src="/logo.svg"
+            alt="Veterans Thrive Foundation"
+            width={180}
+            height={45}
+            className="h-10 w-auto"
+            priority
+          />
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
+        {/* Desktop Navigation - Centered */}
+        <nav className="hidden lg:flex items-center space-x-8">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-[#1E3A5F] hover:text-[#B22234] transition-colors"
+              className={`text-sm font-semibold uppercase tracking-wide transition-all duration-300 animated-underline pb-1 ${
+                scrolled
+                  ? "text-[#1E3A5F] hover:text-[#B22234]"
+                  : "text-white hover:text-[#FFD700]"
+              }`}
             >
               {link.label}
             </Link>
@@ -41,50 +63,59 @@ export function Header() {
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden md:flex items-center space-x-4">
-          <Button
-            asChild
-            className="bg-[#B22234] hover:bg-[#8B1A29] text-white"
+        <div className="hidden lg:flex items-center space-x-4">
+          <Link
+            href="/contact"
+            className="btn-gold flex items-center gap-2 text-sm px-6 py-3"
           >
-            <Link href="/contact">Support Our Veterans</Link>
-          </Button>
+            <Heart className="w-4 h-4" />
+            <span>Donate</span>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden p-2 text-[#1E3A5F]"
+          className={`lg:hidden p-2 rounded-lg transition-colors ${
+            scrolled ? "text-[#1E3A5F]" : "text-white"
+          }`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t bg-white">
-          <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-[#1E3A5F] hover:text-[#B22234] transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Button
-              asChild
-              className="bg-[#B22234] hover:bg-[#8B1A29] text-white w-full"
+      <div
+        className={`lg:hidden fixed inset-x-0 top-20 bg-white shadow-2xl transition-all duration-300 ${
+          mobileMenuOpen
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-4 pointer-events-none"
+        }`}
+      >
+        <nav className="container mx-auto px-4 py-6 flex flex-col space-y-1">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-lg font-semibold text-[#1E3A5F] hover:text-[#B22234] hover:bg-gray-50 transition-all py-4 px-4 rounded-xl"
+              onClick={() => setMobileMenuOpen(false)}
             >
-              <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                Support Our Veterans
-              </Link>
-            </Button>
-          </nav>
-        </div>
-      )}
+              {link.label}
+            </Link>
+          ))}
+          <div className="pt-4 border-t mt-4">
+            <Link
+              href="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="btn-gold flex items-center justify-center gap-2 w-full text-center"
+            >
+              <Heart className="w-5 h-5" />
+              <span>Donate Now</span>
+            </Link>
+          </div>
+        </nav>
+      </div>
     </header>
   );
 }
