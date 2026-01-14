@@ -14,16 +14,40 @@ import {
   Shield,
   Award,
   MapPin,
+  Phone,
+  Clock,
+  CheckCircle,
+  Briefcase,
+  Home,
+  BookOpen,
+  TrendingUp,
+  Sparkles,
 } from "lucide-react";
 import { FadeIn } from "@/components/ui/fade-in";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
+import { TestimonialCarousel } from "@/components/ui/testimonial-carousel";
+
+const stats = [
+  { value: 200000, label: "Veterans Served", suffix: "+" },
+  { value: 4, label: "Core Programs", suffix: "" },
+  { value: 50, label: "Communities", suffix: "+" },
+  { value: 10, label: "Years of Impact", suffix: "+" },
+];
+
+const trustPartners = [
+  { name: "VFW", abbrev: "VFW" },
+  { name: "American Legion", abbrev: "AL" },
+  { name: "DAV", abbrev: "DAV" },
+  { name: "USO", abbrev: "USO" },
+  { name: "Wounded Warrior", abbrev: "WWP" },
+];
 
 const programs = [
   {
     icon: Building2,
     title: "Veteran Business Directory",
     description:
-      "A searchable online directory connecting veteran-owned businesses with consumers who want to support veterans.",
+      "Connect with veteran-owned businesses and support those who served through commerce.",
     href: "/programs#business-directory",
     image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
   },
@@ -31,7 +55,7 @@ const programs = [
     icon: Car,
     title: "Kids Electric Car Program",
     description:
-      "Therapeutic recreation providing military-connected children with joy rides and stress relief.",
+      "Therapeutic recreation bringing joy and stress relief to military-connected children.",
     href: "/programs#electric-car",
     image: "https://images.pexels.com/photos/1148998/pexels-photo-1148998.jpeg?auto=compress&cs=tinysrgb&w=800",
   },
@@ -47,68 +71,100 @@ const programs = [
     icon: Handshake,
     title: "Licensing & Franchise",
     description:
-      "Enabling veteran entrepreneurs nationwide to replicate our proven programs in their communities.",
+      "Empower veteran entrepreneurs to replicate our proven programs nationwide.",
     href: "/programs#licensing",
     image: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800",
   },
 ];
 
-const stats = [
-  { value: 200000, label: "Veterans in Southern Nevada", suffix: "+" },
-  { value: 4, label: "Programs Serving Families", suffix: "" },
-  { value: 50, label: "Communities Reached", suffix: "+" },
-  { value: 95, label: "Family Satisfaction Rate", suffix: "%" },
+const howItWorks = [
+  {
+    step: 1,
+    title: "Connect With Us",
+    description: "Reach out through our contact form or give us a call to learn about our programs.",
+  },
+  {
+    step: 2,
+    title: "Find Your Program",
+    description: "We'll help match you with the program that best fits your family's needs.",
+  },
+  {
+    step: 3,
+    title: "Get Started",
+    description: "Begin your journey with personalized support from our dedicated team.",
+  },
+  {
+    step: 4,
+    title: "Thrive Together",
+    description: "Join our community of veteran families building brighter futures.",
+  },
 ];
 
-const values = [
+const benefits = [
   {
     icon: Heart,
-    title: "Service",
-    description: "Continuing our commitment to serve those who served our nation",
+    title: "Family Support",
+    description: "Comprehensive resources for the entire military family unit.",
+  },
+  {
+    icon: Briefcase,
+    title: "Economic Opportunity",
+    description: "Business development and career advancement for veterans.",
+  },
+  {
+    icon: BookOpen,
+    title: "Youth Education",
+    description: "Academic programs tailored to military-connected children.",
   },
   {
     icon: Users,
-    title: "Community",
-    description: "Building lasting connections that strengthen veteran families",
+    title: "Community Connection",
+    description: "Build lasting relationships with fellow veteran families.",
   },
   {
-    icon: Target,
-    title: "Empowerment",
-    description: "Providing tools and resources for lasting personal success",
+    icon: Shield,
+    title: "Trusted Support",
+    description: "Backed by years of experience serving those who served.",
   },
   {
-    icon: Star,
-    title: "Excellence",
-    description: "Delivering innovative programs that make a real difference",
+    icon: TrendingUp,
+    title: "Growth Focused",
+    description: "Programs designed to help families reach their full potential.",
   },
 ];
 
 const testimonials = [
   {
-    quote: "Veterans Thrive gave my family the support we needed during a difficult transition. The community here is incredible.",
-    name: "Michael R.",
-    role: "Army Veteran",
+    quote: "Veterans Thrive gave my family the support we needed during a difficult transition. The community here is incredible, and I finally feel like we belong somewhere.",
+    name: "Michael Rodriguez",
+    role: "Army Veteran, 15 Years",
     image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400",
   },
   {
-    quote: "The business directory helped my veteran-owned company reach customers who wanted to support veterans. Sales increased 40%.",
-    name: "Sarah T.",
+    quote: "The business directory helped my veteran-owned company reach customers who wanted to support veterans. Our sales increased 40% in the first year.",
+    name: "Sarah Thompson",
     role: "Marine Corps Veteran",
     image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400",
   },
   {
-    quote: "My kids love the electric car program! It's given them so much joy during my deployment.",
-    name: "David M.",
+    quote: "My kids absolutely love the electric car program! It's given them so much joy during my deployment, and knowing they're happy makes everything easier.",
+    name: "David Martinez",
     role: "Navy Active Duty",
     image: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400",
+  },
+  {
+    quote: "The after-school program has been life-changing for my daughter. Her grades improved and she's made wonderful friends who understand military life.",
+    name: "Jennifer Williams",
+    role: "Air Force Spouse",
+    image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400",
   },
 ];
 
 export default function HomePage() {
   return (
     <div className="flex flex-col">
-      {/* Hero Section with Video Background */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* ==================== HERO SECTION ==================== */}
+      <section className="relative h-screen w-full overflow-hidden">
         {/* Video Background */}
         <video
           autoPlay
@@ -125,50 +181,43 @@ export default function HomePage() {
         </video>
 
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1E3A5F]/80 via-[#1E3A5F]/70 to-[#152A45]/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A1628]/80 via-[#0A1628]/60 to-[#0A1628]/90" />
 
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 md:px-6 text-center text-white pt-20">
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
           <FadeIn direction="none" delay={0.2}>
             <Image
-              src="/logo.svg"
-              alt="Veterans Thrive Foundation"
-              width={280}
-              height={70}
-              className="mx-auto mb-8 h-16 md:h-20 w-auto brightness-0 invert"
+              src="/logo-white.svg"
+              alt="VetsThrive Foundation"
+              width={320}
+              height={80}
+              className="h-16 md:h-20 w-auto mb-8"
               priority
             />
           </FadeIn>
 
           <FadeIn delay={0.4}>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight">
-              Empowering Veteran
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-shadow-lg max-w-5xl">
+              Empowering Veteran Families
               <br />
-              Families to{" "}
-              <span className="text-[#FFD700] drop-shadow-lg">Thrive</span>
+              <span className="text-[#C9A227]">to Thrive</span>
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.6}>
-            <p className="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed">
-              Building stronger communities through economic opportunity,
-              youth enrichment, and lasting connections for those who served.
+            <p className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-10 max-w-3xl leading-relaxed">
+              Through economic opportunity, youth enrichment, and community connection —
+              we help those who served build brighter futures.
             </p>
           </FadeIn>
 
           <FadeIn delay={0.8}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-              <Link
-                href="/contact"
-                className="btn-primary flex items-center justify-center gap-2 text-lg"
-              >
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/contact" className="btn-primary text-lg">
                 <Heart className="w-5 h-5" />
                 Support Our Veterans
               </Link>
-              <Link
-                href="/programs"
-                className="btn-outline flex items-center justify-center gap-2 text-lg"
-              >
+              <Link href="/programs" className="btn-secondary text-lg">
                 Explore Programs
                 <ArrowRight className="w-5 h-5" />
               </Link>
@@ -176,27 +225,50 @@ export default function HomePage() {
           </FadeIn>
 
           {/* Scroll Indicator */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-            <ChevronDown className="w-8 h-8 text-[#FFD700]" />
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+            <div className="animate-bounce-slow">
+              <ChevronDown className="w-8 h-8 text-[#C9A227]" />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="bg-gradient-to-r from-[#1E3A5F] to-[#2D5A8B] py-12">
+      {/* ==================== TRUST BAR ==================== */}
+      <section className="bg-[#F9FAFB] py-8 border-b border-gray-100">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+            <span className="text-sm font-medium text-gray-500 uppercase tracking-wider">
+              Proudly Supporting Veterans Alongside
+            </span>
+            <div className="flex items-center gap-8 md:gap-12">
+              {trustPartners.map((partner) => (
+                <div
+                  key={partner.abbrev}
+                  className="text-gray-400 font-bold text-xl md:text-2xl tracking-wider opacity-60 hover:opacity-100 transition-opacity"
+                >
+                  {partner.abbrev}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== STATS SECTION ==================== */}
+      <section className="bg-[#0A1628] py-20">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {stats.map((stat, index) => (
               <FadeIn key={index} delay={index * 0.1}>
                 <div className="text-center">
-                  <div className="text-4xl md:text-5xl font-black text-[#FFD700] mb-2">
+                  <div className="stat-number mb-2">
                     <AnimatedCounter
                       end={stat.value}
                       suffix={stat.suffix}
                       duration={2500}
                     />
                   </div>
-                  <div className="text-sm md:text-base text-gray-200 font-medium">
+                  <div className="text-gray-400 font-medium text-sm md:text-base uppercase tracking-wider">
                     {stat.label}
                   </div>
                 </div>
@@ -206,34 +278,40 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Mission Section */}
+      {/* ==================== MISSION SECTION (Two-Column) ==================== */}
       <section className="section-padding bg-white">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <FadeIn direction="left">
               <div className="relative">
                 <Image
                   src="https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Veterans community"
+                  alt="Veterans community gathering"
                   width={600}
                   height={500}
-                  className="rounded-2xl shadow-2xl object-cover w-full h-[500px]"
+                  className="rounded-2xl shadow-2xl object-cover w-full h-[400px] md:h-[500px]"
                 />
-                <div className="absolute -bottom-6 -right-6 bg-[#FFD700] rounded-2xl p-6 shadow-xl">
-                  <Shield className="w-12 h-12 text-[#1E3A5F]" />
+                {/* Floating badge */}
+                <div className="absolute -bottom-6 -right-6 md:right-8 bg-[#C9A227] rounded-xl p-4 shadow-xl">
+                  <div className="flex items-center gap-3">
+                    <Shield className="w-8 h-8 text-[#0A1628]" />
+                    <div className="text-[#0A1628]">
+                      <div className="font-bold text-lg">10+ Years</div>
+                      <div className="text-sm">of Service</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </FadeIn>
 
             <FadeIn direction="right">
               <div>
-                <span className="text-[#B22234] font-semibold uppercase tracking-wider text-sm">
+                <span className="text-[#C9A227] font-semibold uppercase tracking-wider text-sm">
                   Our Mission
                 </span>
-                <h2 className="text-4xl md:text-5xl font-bold text-[#1E3A5F] mt-3 mb-6">
+                <h2 className="heading-lg text-[#0A1628] mt-3 mb-6">
                   Serving Those Who
-                  <br />
-                  <span className="text-[#B22234]">Served Us</span>
+                  <span className="text-[#C9A227]"> Served Us</span>
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed mb-6">
                   Veterans Thrive Foundation empowers veteran families to thrive
@@ -242,46 +320,92 @@ export default function HomePage() {
                   resources, support, and community to not just survive, but
                   thrive beyond service.
                 </p>
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="flex -space-x-2">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div
-                        key={i}
-                        className="w-10 h-10 rounded-full bg-gradient-to-br from-[#1E3A5F] to-[#2D5A8B] border-2 border-white"
-                      />
-                    ))}
-                  </div>
-                  <span className="text-gray-600">
-                    Join <strong>1,000+</strong> supporters
-                  </span>
+                <p className="text-gray-600 leading-relaxed mb-8">
+                  Based in Las Vegas and serving Southern Nevada, we&apos;re building
+                  a network of support that extends far beyond traditional veteran
+                  services.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link href="/about" className="btn-navy">
+                    Learn Our Story
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
                 </div>
-                <Link
-                  href="/about"
-                  className="inline-flex items-center gap-2 text-[#1E3A5F] font-semibold hover:text-[#B22234] transition-colors"
-                >
-                  Learn More About Us
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
               </div>
             </FadeIn>
           </div>
         </div>
       </section>
 
-      {/* Programs Section */}
-      <section className="section-padding bg-[#f8fafc]">
+      {/* ==================== HOW IT WORKS ==================== */}
+      <section className="section-padding bg-[#F9FAFB]">
         <div className="container mx-auto px-4 md:px-6">
           <FadeIn>
             <div className="text-center mb-16">
-              <span className="text-[#B22234] font-semibold uppercase tracking-wider text-sm">
-                What We Do
+              <span className="text-[#C9A227] font-semibold uppercase tracking-wider text-sm">
+                Get Started
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1E3A5F] mt-3 mb-4">
+              <h2 className="heading-lg text-[#0A1628] mt-3 mb-4">
+                How It Works
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Getting support for your family is simple. Here&apos;s how to begin
+                your journey with Veterans Thrive.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {howItWorks.map((item, index) => (
+              <FadeIn key={item.step} delay={index * 0.15}>
+                <div className="relative text-center">
+                  {/* Connector line */}
+                  {index < howItWorks.length - 1 && (
+                    <div className="hidden lg:block absolute top-7 left-[60%] w-full h-0.5 bg-gradient-to-r from-[#C9A227] to-[#C9A227]/20" />
+                  )}
+
+                  <div className="relative z-10">
+                    <div className="number-circle mx-auto mb-6">
+                      {item.step}
+                    </div>
+                    <h3 className="text-xl font-bold text-[#0A1628] mb-3">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn delay={0.6}>
+            <div className="text-center mt-12">
+              <Link href="/contact" className="btn-primary">
+                Get Started Today
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* ==================== PROGRAMS SECTION ==================== */}
+      <section className="section-padding bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <FadeIn>
+            <div className="text-center mb-16">
+              <span className="text-[#C9A227] font-semibold uppercase tracking-wider text-sm">
+                What We Offer
+              </span>
+              <h2 className="heading-lg text-[#0A1628] mt-3 mb-4">
                 Our Programs
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 Comprehensive support for veteran families through innovative
-                programs that address real needs.
+                programs designed to address real needs.
               </p>
             </div>
           </FadeIn>
@@ -289,8 +413,8 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {programs.map((program, index) => (
               <FadeIn key={program.title} delay={index * 0.15}>
-                <Link href={program.href} className="group block">
-                  <div className="card-premium h-full">
+                <Link href={program.href} className="group block h-full">
+                  <div className="card-premium h-full flex flex-col">
                     <div className="relative h-56 overflow-hidden">
                       <Image
                         src={program.image}
@@ -298,19 +422,19 @@ export default function HomePage() {
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#1E3A5F]/80 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/80 to-transparent" />
                       <div className="absolute bottom-4 left-4">
-                        <div className="w-14 h-14 rounded-xl bg-[#FFD700] flex items-center justify-center shadow-lg">
-                          <program.icon className="w-7 h-7 text-[#1E3A5F]" />
+                        <div className="w-14 h-14 rounded-xl bg-[#C9A227] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <program.icon className="w-7 h-7 text-[#0A1628]" />
                         </div>
                       </div>
                     </div>
-                    <div className="p-6">
-                      <h3 className="text-2xl font-bold text-[#1E3A5F] mb-3 group-hover:text-[#B22234] transition-colors">
+                    <div className="p-6 flex-1 flex flex-col">
+                      <h3 className="text-xl font-bold text-[#0A1628] mb-3 group-hover:text-[#C9A227] transition-colors">
                         {program.title}
                       </h3>
-                      <p className="text-gray-600 mb-4">{program.description}</p>
-                      <span className="inline-flex items-center gap-2 text-[#B22234] font-semibold">
+                      <p className="text-gray-600 mb-4 flex-1">{program.description}</p>
+                      <span className="inline-flex items-center gap-2 text-[#C9A227] font-semibold">
                         Learn More
                         <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-2" />
                       </span>
@@ -320,48 +444,49 @@ export default function HomePage() {
               </FadeIn>
             ))}
           </div>
+
+          <FadeIn delay={0.6}>
+            <div className="text-center mt-12">
+              <Link href="/programs" className="btn-ghost">
+                View All Programs
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="section-padding relative overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="https://images.pexels.com/photos/1202723/pexels-photo-1202723.jpeg?auto=compress&cs=tinysrgb&w=1920"
-            alt="Background"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-[#1E3A5F]/95" />
-        </div>
-
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
+      {/* ==================== BENEFITS GRID ==================== */}
+      <section className="section-padding bg-[#0A1628]">
+        <div className="container mx-auto px-4 md:px-6">
           <FadeIn>
             <div className="text-center mb-16">
-              <span className="text-[#FFD700] font-semibold uppercase tracking-wider text-sm">
-                Our Foundation
+              <span className="text-[#C9A227] font-semibold uppercase tracking-wider text-sm">
+                Why Choose Us
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mt-3 mb-4">
-                Core Values
+              <h2 className="heading-lg text-white mt-3 mb-4">
+                The VetsThrive Difference
               </h2>
-              <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-                The principles that guide everything we do at Veterans Thrive
-                Foundation.
+              <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+                We offer comprehensive support that addresses every aspect of
+                veteran family life.
               </p>
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <FadeIn key={value.title} delay={index * 0.1}>
-                <div className="card-glass p-8 text-center h-full">
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[#FFD700] to-[#E5C100] flex items-center justify-center shadow-lg">
-                    <value.icon className="w-10 h-10 text-[#1E3A5F]" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {benefits.map((benefit, index) => (
+              <FadeIn key={benefit.title} delay={index * 0.1}>
+                <div className="group card-glass p-6 h-full">
+                  <div className="icon-box mb-4">
+                    <benefit.icon className="w-7 h-7" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-3">
-                    {value.title}
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#C9A227] transition-colors">
+                    {benefit.title}
                   </h3>
-                  <p className="text-gray-300">{value.description}</p>
+                  <p className="text-gray-400">
+                    {benefit.description}
+                  </p>
                 </div>
               </FadeIn>
             ))}
@@ -369,71 +494,99 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="section-padding bg-white">
+      {/* ==================== TESTIMONIALS ==================== */}
+      <section className="section-padding bg-[#F9FAFB]">
         <div className="container mx-auto px-4 md:px-6">
           <FadeIn>
             <div className="text-center mb-16">
-              <span className="text-[#B22234] font-semibold uppercase tracking-wider text-sm">
-                Testimonials
+              <span className="text-[#C9A227] font-semibold uppercase tracking-wider text-sm">
+                Success Stories
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1E3A5F] mt-3 mb-4">
-                Stories of Impact
+              <h2 className="heading-lg text-[#0A1628] mt-3 mb-4">
+                What Families Are Saying
               </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Real stories from real families whose lives have been transformed
+                through our programs.
+              </p>
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <FadeIn key={testimonial.name} delay={index * 0.15}>
-                <div className="bg-[#f8fafc] rounded-2xl p-8 h-full relative">
-                  <div className="text-6xl text-[#FFD700]/30 font-serif absolute top-4 left-6">
-                    &ldquo;
-                  </div>
-                  <p className="text-gray-600 leading-relaxed mb-6 relative z-10 pt-8">
-                    {testimonial.quote}
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <Image
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      width={56}
-                      height={56}
-                      className="w-14 h-14 rounded-full object-cover"
-                    />
-                    <div>
-                      <div className="font-bold text-[#1E3A5F]">
-                        {testimonial.name}
-                      </div>
-                      <div className="text-sm text-gray-500">
-                        {testimonial.role}
-                      </div>
-                    </div>
-                  </div>
+          <FadeIn delay={0.2}>
+            <TestimonialCarousel testimonials={testimonials} />
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* ==================== FEATURE SECTION (Two-Column Alternating) ==================== */}
+      <section className="section-padding bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <FadeIn direction="right" className="order-2 lg:order-1">
+              <div>
+                <span className="text-[#C9A227] font-semibold uppercase tracking-wider text-sm">
+                  Our Founder
+                </span>
+                <h2 className="heading-lg text-[#0A1628] mt-3 mb-6">
+                  Built by a Veteran Family,
+                  <span className="text-[#C9A227]"> For Veteran Families</span>
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                  Veterans Thrive Foundation was founded by Gabby, a military spouse
+                  who experienced firsthand the challenges veteran families face
+                  during and after service.
+                </p>
+                <p className="text-gray-600 leading-relaxed mb-8">
+                  Her vision was simple: create a community where veteran families
+                  don&apos;t just survive — they thrive. Today, that vision has grown
+                  into a comprehensive support system serving thousands of families
+                  across Southern Nevada.
+                </p>
+
+                <div className="flex items-center gap-4">
+                  <Link href="/about" className="btn-primary">
+                    Read Our Story
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
                 </div>
-              </FadeIn>
-            ))}
+              </div>
+            </FadeIn>
+
+            <FadeIn direction="left" className="order-1 lg:order-2">
+              <div className="relative">
+                <Image
+                  src="https://images.pexels.com/photos/7551617/pexels-photo-7551617.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  alt="Military family"
+                  width={600}
+                  height={500}
+                  className="rounded-2xl shadow-2xl object-cover w-full h-[400px] md:h-[500px]"
+                />
+                {/* Decorative element */}
+                <div className="absolute -top-4 -left-4 w-24 h-24 border-2 border-[#C9A227] rounded-2xl" />
+                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-[#C9A227]/10 rounded-2xl" />
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>
 
-      {/* Location Section */}
-      <section className="py-16 bg-[#f8fafc]">
+      {/* ==================== LOCATION CALLOUT ==================== */}
+      <section className="py-16 bg-[#F9FAFB] border-y border-gray-100">
         <div className="container mx-auto px-4 md:px-6">
           <FadeIn>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-center md:text-left">
-              <div className="w-16 h-16 rounded-full bg-[#1E3A5F] flex items-center justify-center">
-                <MapPin className="w-8 h-8 text-[#FFD700]" />
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 text-center md:text-left">
+              <div className="w-16 h-16 rounded-full bg-[#0A1628] flex items-center justify-center flex-shrink-0">
+                <MapPin className="w-8 h-8 text-[#C9A227]" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-[#1E3A5F]">
+                <h3 className="text-2xl font-bold text-[#0A1628]">
                   Proudly Serving Southern Nevada
                 </h3>
                 <p className="text-gray-600">
                   Based in Las Vegas, supporting veteran families across the region
                 </p>
               </div>
-              <Link href="/contact" className="btn-primary">
+              <Link href="/contact" className="btn-primary flex-shrink-0">
                 Get In Touch
               </Link>
             </div>
@@ -441,42 +594,40 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* ==================== FINAL CTA SECTION ==================== */}
       <section className="section-padding relative overflow-hidden">
+        {/* Background */}
         <div className="absolute inset-0">
           <Image
             src="https://images.pexels.com/photos/1046896/pexels-photo-1046896.jpeg?auto=compress&cs=tinysrgb&w=1920"
-            alt="American flag"
+            alt="American flag background"
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1E3A5F]/95 to-[#B22234]/90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/95 to-[#0A1628]/85" />
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <FadeIn>
-            <div className="max-w-4xl mx-auto text-center text-white">
-              <Award className="w-16 h-16 mx-auto text-[#FFD700] mb-6" />
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                Ready to Make a Difference?
+            <div className="max-w-4xl mx-auto text-center">
+              <Sparkles className="w-12 h-12 mx-auto text-[#C9A227] mb-6" />
+              <h2 className="heading-xl text-white mb-6">
+                Ready to Support Our Veterans?
               </h2>
-              <p className="text-xl text-gray-200 mb-10 max-w-2xl mx-auto">
+              <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
                 Join thousands of supporters helping veteran families thrive.
-                Every contribution, every volunteer hour, every business listing
-                makes an impact.
+                Every contribution makes an impact — whether you donate, volunteer,
+                or list your veteran-owned business.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact" className="btn-gold text-lg">
-                  <Heart className="w-5 h-5 mr-2 inline" />
+                <Link href="/contact" className="btn-primary text-lg">
+                  <Heart className="w-5 h-5" />
                   Donate Now
                 </Link>
-                <Link href="/contact" className="btn-outline text-lg">
+                <Link href="/programs#business-directory" className="btn-secondary text-lg">
                   List Your Business
                 </Link>
-                <Link
-                  href="/contact"
-                  className="btn-outline text-lg border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700] hover:text-[#1E3A5F]"
-                >
+                <Link href="/contact" className="btn-secondary text-lg">
                   Volunteer
                 </Link>
               </div>
