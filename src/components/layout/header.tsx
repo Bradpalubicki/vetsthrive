@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { Menu, X, Heart } from "lucide-react";
+import { Menu, X, Heart, Phone, ChevronDown } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -18,7 +18,7 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -26,36 +26,32 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+      className={`fixed top-0 z-50 w-full transition-all duration-500 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg"
-          : "bg-transparent"
+          ? "bg-[#0A1628]/95 backdrop-blur-lg shadow-lg py-3"
+          : "bg-transparent py-5"
       }`}
     >
-      <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
+      <div className="container mx-auto flex items-center justify-between px-4 md:px-6">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-3 group">
+        <Link href="/" className="flex items-center group">
           <Image
-            src="/logo.svg"
-            alt="Veterans Thrive Foundation"
-            width={180}
-            height={45}
-            className="h-10 w-auto"
+            src={scrolled ? "/logo-white.svg" : "/logo-white.svg"}
+            alt="VetsThrive Foundation"
+            width={200}
+            height={50}
+            className="h-10 md:h-12 w-auto transition-all duration-300"
             priority
           />
         </Link>
 
-        {/* Desktop Navigation - Centered */}
-        <nav className="hidden lg:flex items-center space-x-8">
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-semibold uppercase tracking-wide transition-all duration-300 animated-underline pb-1 ${
-                scrolled
-                  ? "text-[#1E3A5F] hover:text-[#B22234]"
-                  : "text-white hover:text-[#FFD700]"
-              }`}
+              className="text-sm font-medium text-white/90 hover:text-[#C9A227] transition-colors duration-300 uppercase tracking-wider animated-underline pb-1"
             >
               {link.label}
             </Link>
@@ -63,21 +59,26 @@ export function Header() {
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden lg:flex items-center space-x-4">
+        <div className="hidden lg:flex items-center gap-4">
+          <Link
+            href="tel:+17025551234"
+            className="text-white/80 hover:text-[#C9A227] transition-colors flex items-center gap-2 text-sm"
+          >
+            <Phone className="w-4 h-4" />
+            <span className="hidden xl:inline">Contact Us</span>
+          </Link>
           <Link
             href="/contact"
-            className="btn-gold flex items-center gap-2 text-sm px-6 py-3"
+            className="btn-primary text-sm px-6 py-3"
           >
             <Heart className="w-4 h-4" />
-            <span>Donate</span>
+            Donate
           </Link>
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className={`lg:hidden p-2 rounded-lg transition-colors ${
-            scrolled ? "text-[#1E3A5F]" : "text-white"
-          }`}
+          className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -87,31 +88,39 @@ export function Header() {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed inset-x-0 top-20 bg-white shadow-2xl transition-all duration-300 ${
+        className={`lg:hidden fixed inset-x-0 top-[72px] bg-[#0A1628] shadow-2xl transition-all duration-300 ${
           mobileMenuOpen
-            ? "opacity-100 translate-y-0"
+            ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
       >
-        <nav className="container mx-auto px-4 py-6 flex flex-col space-y-1">
+        <nav className="container mx-auto px-4 py-6 flex flex-col">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-lg font-semibold text-[#1E3A5F] hover:text-[#B22234] hover:bg-gray-50 transition-all py-4 px-4 rounded-xl"
+              className="text-lg font-medium text-white hover:text-[#C9A227] transition-colors py-4 px-2 border-b border-white/10"
               onClick={() => setMobileMenuOpen(false)}
             >
               {link.label}
             </Link>
           ))}
-          <div className="pt-4 border-t mt-4">
+          <div className="pt-6 flex flex-col gap-3">
+            <Link
+              href="tel:+17025551234"
+              className="text-white/80 hover:text-[#C9A227] transition-colors flex items-center gap-2 py-3"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Phone className="w-5 h-5" />
+              Contact Us
+            </Link>
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="btn-gold flex items-center justify-center gap-2 w-full text-center"
+              className="btn-primary w-full justify-center"
             >
               <Heart className="w-5 h-5" />
-              <span>Donate Now</span>
+              Donate Now
             </Link>
           </div>
         </nav>
