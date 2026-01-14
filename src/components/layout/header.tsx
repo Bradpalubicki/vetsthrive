@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { Menu, X, Heart, Phone, ChevronDown } from "lucide-react";
+import { Menu, X, Heart, Phone } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -36,11 +36,11 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center group">
           <Image
-            src={scrolled ? "/logo-white.svg" : "/logo-white.svg"}
-            alt="VetsThrive Foundation"
-            width={200}
-            height={50}
-            className="h-10 md:h-12 w-auto transition-all duration-300"
+            src="/logo.png"
+            alt="Veterans Thrive Foundation"
+            width={40}
+            height={40}
+            className="h-10 w-auto logo-animated transition-all duration-300"
             priority
           />
         </Link>

@@ -187,11 +187,11 @@ export default function HomePage() {
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
           <FadeIn direction="none" delay={0.2}>
             <Image
-              src="/logo-white.svg"
-              alt="VetsThrive Foundation"
-              width={320}
+              src="/logo.png"
+              alt="Veterans Thrive Foundation"
+              width={80}
               height={80}
-              className="h-16 md:h-20 w-auto mb-8"
+              className="h-20 md:h-24 w-auto mb-8 logo-animated"
               priority
             />
           </FadeIn>

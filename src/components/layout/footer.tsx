@@ -69,11 +69,11 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-6">
             <Image
-              src="/logo-white.svg"
-              alt="VetsThrive Foundation"
-              width={180}
-              height={45}
-              className="h-12 w-auto"
+              src="/logo.png"
+              alt="Veterans Thrive Foundation"
+              width={60}
+              height={60}
+              className="h-16 w-auto logo-animated"
             />
             <p className="text-gray-400 leading-relaxed">
               Empowering veteran families to thrive through economic
